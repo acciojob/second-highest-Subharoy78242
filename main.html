@@ -1,58 +1,45 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
-<body>	
-	<script>
-		function secondHighest(arr) {
-    if (arr.length === 0) return undefined; // Return undefined for an empty array
-    if (arr.length === 1) return undefined; // Return undefined for an array with only one element
-
-    let first = -Infinity;
-    let second = -Infinity;
-    let uniqueElements = new Set(arr);
-
-    if (uniqueElements.size === 1) {
-        // If all elements are the same, return the highest element
-        for (let num of arr) {
-            if (num > first) {
-                first = num;
+<body>    
+    <script>
+        // Define the secondHighest function here
+        function secondHighest(arr) {
+            if (arr.length === 0 || arr.length === 1) {
+                return -Infinity; // Return -Infinity for empty or single element arrays
             }
+
+            let first = -Infinity;
+            let second = -Infinity;
+            let uniqueElements = new Set(arr);
+
+            if (uniqueElements.size === 1) {
+                return -Infinity; // Return -Infinity if all elements are the same
+            }
+
+            for (let num of arr) {
+                if (num > first) {
+                    second = first;
+                    first = num;
+                } else if (num > second && num < first) {
+                    second = num;
+                }
+            }
+
+            return second;
         }
-        return first;
-    }
 
-    for (let num of arr) {
-        if (num > first) {
-            second = first;
-            first = num;
-        } else if (num > second && num < first) {
-            second = num;
+        function Main() {
+            var n = prompt("Enter the number of elements");
+            var arr = [];
+            for (var i = 0; i < n; i++) {
+                arr[i] = parseInt(prompt("Enter element " + (i+1)));
+            }
+            alert(secondHighest(arr));
         }
-    }
-
-    return second === -Infinity ? undefined : second;
-}
-
-
-		function Main() {
-			var n = prompt("Enter the number of elements");
-			var arr = [];
-			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
-			}
-			alert(secondHighest(arr));
-		}
-		Main();
-	</script>
-
-    <script type="text/javascript" src="./script.js">
-</script>
-
+        Main();
+    </script>
 </body>
-
 </html>
