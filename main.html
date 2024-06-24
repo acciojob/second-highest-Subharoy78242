@@ -16,7 +16,15 @@
     let second = -Infinity;
     let uniqueElements = new Set(arr);
 
-    if (uniqueElements.size === 1) return undefined; // Return undefined if all elements are the same
+    if (uniqueElements.size === 1) {
+        // If all elements are the same, return the highest element
+        for (let num of arr) {
+            if (num > first) {
+                first = num;
+            }
+        }
+        return first;
+    }
 
     for (let num of arr) {
         if (num > first) {
